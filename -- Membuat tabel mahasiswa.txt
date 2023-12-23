@@ -1,0 +1,56 @@
+-- Membuat tabel mahasiswa
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(255),
+    nrp VARCHAR(10)
+);
+
+-- Menambahkan data ke tabel mahasiswa
+INSERT INTO students (student_id, student_name, nrp) VALUES
+(1, 'John Doe', '123456789'),
+(2, 'Jane Smith', '987654321'),
+(3, 'Bob Johnson', '456789123');
+
+-- Membuat tabel mata kuliah
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(255)
+);
+
+-- Menambahkan data ke tabel mata kuliah
+INSERT INTO courses (course_id, course_name) VALUES
+(101, 'Computer Science'),
+(102, 'Mathematics'),
+(103, 'Physics');
+
+-- Membuat tabel dosen
+CREATE TABLE lecturers (
+    lecturer_id INT PRIMARY KEY,
+    lecturer_name VARCHAR(255)
+);
+
+-- Menambahkan data ke tabel dosen
+INSERT INTO lecturers (lecturer_id, lecturer_name) VALUES
+(201, 'Dr. Harris'),
+(202, 'Prof. Miller'),
+(203, 'Dr. Hernandez');
+
+-- Membuat tabel tugas
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    lecturer_id INT,
+    task_description VARCHAR(255),
+    task_completed BOOLEAN,
+    task_score INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id)
+);
+
+-- Menambahkan data ke tabel tugas
+INSERT INTO tasks (task_id, student_id, course_id, lecturer_id, task_description, task_completed, task_score) VALUES
+(301, 1, 101, 201, 'Programming Project', TRUE, 75),
+(302, 2, 102, 202, 'Math Assignment', FALSE, NULL),
+(303, 3, 103, 203, 'Physics Lab Report', TRUE, 85);
